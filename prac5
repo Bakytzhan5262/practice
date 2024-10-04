@@ -1,0 +1,122 @@
+package com.company;
+
+public interface IDocuments {
+    void open();
+}
+//======================================
+package com.company;
+
+public class Letter implements IDocuments {
+    public void open(){
+        System.out.println("Letter open!");
+    }
+}
+//======================================
+package com.company;
+
+public class Report implements IDocuments{
+    public void open(){
+        System.out.println("Report open!");
+    }
+}
+
+//======================================
+package com.company;
+
+public class Resume implements IDocuments {
+    public void open(){
+        System.out.println("Resume open!");
+    }
+}
+
+//======================================
+package com.company;
+
+public class Invoice implements IDocuments{
+    public void open(){
+        System.out.println("Invoce Open");
+    }
+}
+
+//======================================
+package com.company;
+
+public interface  DocumentCreator {
+    public IDocuments createDocument();
+}
+
+//======================================
+package com.company;
+
+public class InvoiceCreator implements DocumentCreator{
+    public IDocuments createDocument(){
+        return new Invoice();
+    }
+}
+
+//======================================
+package com.company;
+public class LetterCreator implements DocumentCreator {
+    @Override
+    public IDocuments createDocument() {
+        return new Letter();
+    }
+}
+
+//======================================
+package com.company;
+public class ReportCreator implements DocumentCreator {
+
+    public IDocuments createDocument() {
+        return new Report();
+    }
+}
+
+//======================================
+package com.company;
+public class ResumeCreator implements DocumentCreator {
+    @Override
+    public IDocuments createDocument() {
+        return new Resume();
+    }
+}
+
+//======================================
+package com.company;
+
+public enum DocType {
+    REPORT, RESUME, LETTER, INVOICE
+}
+
+//======================================
+package com.company;
+
+public class Main {
+    public static void main(String[] args) {
+        getDocument(DocType.REPORT).open();
+    }
+
+    public static IDocuments getDocument(DocType docType) {
+        DocumentCreator creator = null;
+
+        switch (docType) {
+            case REPORT:
+                creator = new ReportCreator();
+                break;
+            case RESUME:
+                creator = new ResumeCreator();
+                break;
+            case LETTER:
+                creator = new LetterCreator();
+                break;
+            case INVOICE:
+                creator = new InvoiceCreator();
+                break;
+            default:
+                throw new IllegalArgumentException("Incorrect document type");
+        }
+
+        return creator.createDocument();
+    }
+}
+
