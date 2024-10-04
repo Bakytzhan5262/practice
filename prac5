@@ -3,6 +3,7 @@ package com.company;
 public interface IDocuments {
     void open();
 }
+
 //======================================
 package com.company;
 
