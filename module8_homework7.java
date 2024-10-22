@@ -291,7 +291,7 @@ public class HotChocolate extends Beverage {
     }
 }
 
-public class BeverageTestDrive {
+public class Main {
     public static void main(String[] args) {
         Beverage tea = new Tea();
         System.out.println("Приготовление чая:");
@@ -385,7 +385,7 @@ public class BasicUser extends User {
         System.out.println(this.name + " получил системное сообщение: " + message);
     }
 }
-public class ChatMediatorDemo {
+public class Main {
     public static void main(String[] args) {
         ChatRoom chatRoom = new ChatRoom();
 
